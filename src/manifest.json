@@ -16,7 +16,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://sra.smartosc.com/*"
+        "*://*.zoho.com/*"
       ],
       "js": [
         "contentScript.bundle.js"
@@ -31,7 +31,7 @@
     "scripting"
   ],
   "host_permissions": [
-    "*://*.smartosc.com/*"
+    "*://*.zoho.com/*"
   ],
   "devtools_page": "devtools.html",
   "web_accessible_resources": [
