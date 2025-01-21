@@ -2,6 +2,7 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 process.env.ASSET_PATH = '/';
+var fs = require('fs');
 
 var WebpackDevServer = require('webpack-dev-server'),
   webpack = require('webpack'),
@@ -25,9 +26,15 @@ delete config.chromeExtensionBoilerplate;
 
 var compiler = webpack(config);
 
-var server = new WebpackDevServer(
-  {
-    https: false,
+var server = new WebpackDevServer({
+    server: {
+      type: 'https',
+      options: {
+        key: fs.readFileSync(path.resolve(__dirname, '..', 'certs/files/localhost.key')),
+        cert: fs.readFileSync(path.resolve(__dirname, '..', 'certs/files/localhost.crt')),
+        ca: fs.readFileSync(path.resolve(__dirname, '..', 'certs/files/rootCA.pem')),
+      },
+    },
     hot: true,
     liveReload: false,
     client: {

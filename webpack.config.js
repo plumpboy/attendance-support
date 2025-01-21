@@ -5,7 +5,9 @@ var webpack = require('webpack'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin');
-var { CleanWebpackPlugin } = require('clean-webpack-plugin');
+var {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 var ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 var ReactRefreshTypeScript = require('react-refresh-typescript');
 
@@ -42,7 +44,7 @@ var options = {
     options: path.join(__dirname, 'src', 'pages', 'Options', 'index.jsx'),
     popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.jsx'),
     background: path.join(__dirname, 'src', 'pages', 'Background', 'index.js'),
-    contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
+    contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.jsx'),
     devtools: path.join(__dirname, 'src', 'pages', 'Devtools', 'index.js'),
     panel: path.join(__dirname, 'src', 'pages', 'Panel', 'index.jsx'),
   },
@@ -56,13 +58,11 @@ var options = {
     publicPath: ASSET_PATH,
   },
   module: {
-    rules: [
-      {
+    rules: [{
         // look for .css or .scss files
         test: /\.(css|scss)$/,
         // in the `src` directory
-        use: [
-          {
+        use: [{
             loader: 'style-loader',
           },
           {
@@ -93,24 +93,21 @@ var options = {
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: require.resolve('ts-loader'),
-            options: {
-              getCustomTransformers: () => ({
-                before: [isDevelopment && ReactRefreshTypeScript()].filter(
-                  Boolean
-                ),
-              }),
-              transpileOnly: isDevelopment,
-            },
+        use: [{
+          loader: require.resolve('ts-loader'),
+          options: {
+            getCustomTransformers: () => ({
+              before: [isDevelopment && ReactRefreshTypeScript()].filter(
+                Boolean
+              ),
+            }),
+            transpileOnly: isDevelopment,
           },
-        ],
+        }, ],
       },
       {
         test: /\.(js|jsx)$/,
-        use: [
-          {
+        use: [{
             loader: 'source-map-loader',
           },
           {
@@ -134,55 +131,49 @@ var options = {
   },
   plugins: [
     isDevelopment && new ReactRefreshWebpackPlugin(),
-    new CleanWebpackPlugin({ verbose: false }),
+    new CleanWebpackPlugin({
+      verbose: false
+    }),
     new webpack.ProgressPlugin(),
     // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'src/manifest.json',
-          to: path.join(__dirname, 'build'),
-          force: true,
-          transform: function (content, path) {
-            // generates the manifest file using the package.json informations
-            return Buffer.from(
-              JSON.stringify({
-                description: process.env.npm_package_description,
-                version: process.env.npm_package_version,
-                ...JSON.parse(content.toString()),
-              })
-            );
-          },
+      patterns: [{
+        from: 'src/manifest.json',
+        to: path.join(__dirname, 'build'),
+        force: true,
+        transform: function (content, path) {
+          // generates the manifest file using the package.json informations
+          return Buffer.from(
+            JSON.stringify({
+              description: process.env.npm_package_description,
+              version: process.env.npm_package_version,
+              ...JSON.parse(content.toString()),
+            })
+          );
         },
-      ],
+      }, ],
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'src/pages/Content/content.styles.css',
-          to: path.join(__dirname, 'build'),
-          force: true,
-        },
-      ],
+      patterns: [{
+        from: 'src/pages/Content/content.styles.css',
+        to: path.join(__dirname, 'build'),
+        force: true,
+      }, ],
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'src/assets/img/icon-128.png',
-          to: path.join(__dirname, 'build'),
-          force: true,
-        },
-      ],
+      patterns: [{
+        from: 'src/assets/img/icon-128.png',
+        to: path.join(__dirname, 'build'),
+        force: true,
+      }, ],
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'src/assets/img/icon-34.png',
-          to: path.join(__dirname, 'build'),
-          force: true,
-        },
-      ],
+      patterns: [{
+        from: 'src/assets/img/icon-34.png',
+        to: path.join(__dirname, 'build'),
+        force: true,
+      }, ],
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.html'),

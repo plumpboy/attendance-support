@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "SRA++",
+  "name": "ZAS",
   "description": "A chrome extension to log work on SRA",
   "options_page": "options.html",
   "background": {
@@ -16,7 +16,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.zoho.com/*"
+        "*://people.zoho.com/*"
       ],
       "js": [
         "contentScript.bundle.js"
