@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 
 const RequestContainer = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState('items');
+  const [activeTab, setActiveTab] = useState('requests');
 
   // Sample list of items
-  const items = [
-    { id: 1, title: 'Item 1', description: 'Description for item 1' },
-    { id: 2, title: 'Item 2', description: 'Description for item 2' },
-    { id: 3, title: 'Item 3', description: 'Description for item 3' },
-    { id: 1, title: 'Item 1', description: 'Description for item 1' },
-    { id: 2, title: 'Item 2', description: 'Description for item 2' },
-    { id: 3, title: 'Item 3', description: 'Description for item 3' },
-    { id: 1, title: 'Item 1', description: 'Description for item 1' },
-    { id: 2, title: 'Item 2', description: 'Description for item 2' },
-    { id: 3, title: 'Item 3', description: 'Description for item 3' },
+  const requests = [
+    { id: 1, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Fix-time' },
+    { id: 2, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Leave' },
+    { id: 3, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Fix-time' },
+    { id: 4, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Leave' },
+    { id: 5, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Fix-time' },
+    { id: 6, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Leave' },
+    { id: 7, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Leave' },
+    { id: 8, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Leave' },
   ];
 
   const handleOk = (item) => {
@@ -32,7 +31,7 @@ const RequestContainer = () => {
         className="toggle-button"
         onClick={() => setIsPopupVisible(!isPopupVisible)}
       >
-        Toggle Popup
+        Attendance Support
       </button>
 
       {/* Popup */}
@@ -51,34 +50,49 @@ const RequestContainer = () => {
             <div className="tabs">
               <button
                 className={`tab-button ${
-                  activeTab === 'items' ? 'active' : ''
-                }`}
-                onClick={() => setActiveTab('items')}
-              >
-                Items
-              </button>
-              <button
-                className={`tab-button ${
                   activeTab === 'status' ? 'active' : ''
                 }`}
                 onClick={() => setActiveTab('status')}
               >
                 Status
               </button>
+              <button
+                className={`tab-button ${
+                  activeTab === 'requests' ? 'active' : ''
+                }`}
+                onClick={() => setActiveTab('requests')}
+              >
+                Create Requests
+              </button>
             </div>
             <div className="tab-content">
-              {activeTab === 'items' && (
+              {activeTab === 'status' && (
+                <div className="status-content">
+                  <h3>Status Tab Content</h3>
+                  <p>This is the content for the Status tab.</p>
+                </div>
+              )}
+              {activeTab === 'requests' && (
                 <div className="items-list">
-                  {items.map((item) => (
+                  <div className="item header">
+                    <h3>Date</h3>
+                    <h3>Type</h3>
+                    <h3>From</h3>
+                    <h3>To</h3>
+                    <h3>Actions</h3>
+                  </div>
+                  {requests.map((item) => (
                     <div key={item.id} className="item">
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
+                      <p>{item.date}</p>
+                      <p>{item.type}</p>
+                      <p>{item.from}</p>
+                      <p>{item.to}</p>
                       <div className="item-buttons">
                         <button
                           className="ok-button"
                           onClick={() => handleOk(item)}
                         >
-                          OK
+                          Submit
                         </button>
                         <button
                           className="skip-button"
@@ -89,12 +103,6 @@ const RequestContainer = () => {
                       </div>
                     </div>
                   ))}
-                </div>
-              )}
-              {activeTab === 'status' && (
-                <div className="status-content">
-                  <h3>Status Tab Content</h3>
-                  <p>This is the content for the Status tab.</p>
                 </div>
               )}
             </div>

@@ -2,6 +2,10 @@
   z-index: 0 !important;
 }
 
+.zpl_tblfxd thead {
+  z-index: 0 !important;
+}
+
 button {
   cursor: pointer;
 }
@@ -9,7 +13,6 @@ button {
 .zas-root {
   text-align: center;
   margin-right: 10px;
-  z-index: 1000;
 
   /* Button Styles */
   .toggle-button {
@@ -32,13 +35,14 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
   }
 
   .popup-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     height: 70vh; /* Ensure the popup doesn't exceed the viewport height */
     overflow-y: auto; /* Enable scrolling if content overflows */
@@ -62,8 +66,9 @@ button {
     background: #0088ff;
     color: white;
     top: 5px;
-    border-width: 1px;
     padding: 10px;
+    border-radius: 5px;
+    border-width: 0;
   }
 
   .item {
@@ -76,18 +81,9 @@ button {
     border-radius: 5px;
   }
 
-  .item-title {
+  .item.header {
     font-weight: bold;
-    margin-right: 10px;
-    white-space: nowrap;
-  }
-
-  .item-description {
-    flex-grow: 1;
-    margin-right: 10px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    background-color: #f0f0f0;
   }
 
   .item-buttons {
@@ -101,20 +97,20 @@ button {
     cursor: pointer;
     border: none;
     border-radius: 3px;
-    background: #007bff;
+    background: #0056b3;
     color: white;
     font-size: 14px;
   }
 
   .skip-button {
-    background: #f6ac0b;
+    background: #8d5c07;
   }
 
   .ok-button:hover {
-    background: #0056b3;
+    background: #007bff;
   }
   .skip-button:hover {
-    background: #8d5c07;
+    background: #f6ac0b;
   }
 
   .tabs {
@@ -130,12 +126,43 @@ button {
       border-style: none;
       border-color: initial;
       border-image: initial;
-      background: rgb(0, 123, 255);
+      background: #0056b3;
       width: 50%;
     }
 
     .tab-button.active {
-      background-color: #0056b3;
+      background-color: rgb(0, 123, 255);
     }
+  }
+
+  .items-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .item.header {
+    font-weight: bold;
+    background-color: #f0f0f0;
+  }
+
+  .item p {
+    flex: 1;
+    margin: 0 10px;
+  }
+
+  .item-buttons {
+    display: flex;
+    gap: 5px;
   }
 }
