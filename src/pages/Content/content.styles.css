@@ -1,3 +1,11 @@
+.zpl_btnmnu {
+  z-index: 0 !important;
+}
+
+button {
+  cursor: pointer;
+}
+
 .zas-root {
   text-align: center;
   margin-right: 10px;
@@ -13,7 +21,7 @@
     cursor: pointer;
   }
 
-  /* Popup Overlay */
+  /* Root container for the popup */
   .popup-overlay {
     position: fixed;
     top: 0;
@@ -24,27 +32,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
   }
 
-  /* Popup Content */
   .popup-content {
     background: white;
     padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    max-height: 400px;
-    overflow-y: auto;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    height: 70vh; /* Ensure the popup doesn't exceed the viewport height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
   }
 
-  .popup-content h2 {
-    margin-top: 0;
+  .header {
+    position: sticky;
+    top: 0; /* Sticks the header to the top of the popup */
+    background: white;
+    z-index: 10; /* Ensures it appears above the scrolling content */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Optional: Add a bottom border for separation */
+    font-weight: bold;
+    text-align: center;
   }
 
-  /* Item Styles */
+  .close-button {
+    right: 0;
+    padding: 10px 0;
+    position: absolute;
+    background: #0088ff;
+    color: white;
+    top: 5px;
+    border-width: 1px;
+    padding: 10px;
+  }
+
   .item {
-    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -52,44 +78,64 @@
 
   .item-title {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-right: 10px;
+    white-space: nowrap;
+  }
+
+  .item-description {
+    flex-grow: 1;
+    margin-right: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .item-buttons {
-    margin-top: 10px;
+    display: flex;
+    gap: 5px;
   }
 
-  .item-buttons button {
+  .ok-button,
+  .skip-button {
     padding: 5px 10px;
-    margin-right: 5px;
+    cursor: pointer;
     border: none;
     border-radius: 3px;
-    cursor: pointer;
-  }
-
-  .ok-button {
-    background-color: #28a745;
+    background: #007bff;
     color: white;
+    font-size: 14px;
   }
 
   .skip-button {
-    background-color: #dc3545;
-    color: white;
+    background: #f6ac0b;
   }
 
-  /* Close Button */
-  .close-button {
-    display: block;
-    text-align: right;
-    margin-bottom: 10px;
+  .ok-button:hover {
+    background: #0056b3;
+  }
+  .skip-button:hover {
+    background: #8d5c07;
   }
 
-  .close-button button {
-    background: #6c757d;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+
+    .tab-button {
+      cursor: pointer;
+      color: white;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-width: initial;
+      border-style: none;
+      border-color: initial;
+      border-image: initial;
+      background: rgb(0, 123, 255);
+      width: 50%;
+    }
+
+    .tab-button.active {
+      background-color: #0056b3;
+    }
   }
 }
