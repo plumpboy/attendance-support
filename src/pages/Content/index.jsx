@@ -5,7 +5,6 @@ import { createRoot } from 'react-dom/client';
 console.log('Content script works!');
 
 const menu = document.getElementById('top_right_menu');
-
 const app = document.createElement('div');
 app.id = 'root';
 

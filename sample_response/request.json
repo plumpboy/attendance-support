@@ -1,0 +1,171 @@
+fetch("https://people.zoho.com/hrportal1524046581683/AttendanceAction.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "mode=bulkAttendReg&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1&erecno=412762000145976089&fdate=22-Jan-2025&dataObj=%7B%2222-Jan-2025%22%3A%7B%22fromDate%22%3A%2222-Jan-2025%22%2C%22toDate%22%3A%2222-Jan-2025%22%2C%22ftime%22%3A540%2C%22ttime%22%3A1149%7D%7D",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}); ;
+fetch("https://people.zoho.com/hrportal1524046581683/AttendanceAction.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "mode=getMyRequest&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1&erecno=%5B%22412762000145976089%22%5D&statFil=%5B%22-1%22%5D",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}); ;
+fetch("https://people.zoho.com/hrportal1524046581683/commonAction.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "mode=GET_ORG_USERLIST_NEW&isInit=false&isZuids=true&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1&userIds=%5B%22673370263%22%2C%22764732401%22%5D",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}); ;
+fetch("https://people.zoho.com/hrportal1524046581683/timesheetDispAction.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "mode=getPMProjectIds&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+
+//// leave
+fetch("https://people.zoho.com/hrportal1524046581683/addUpdateRecord.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "isPicklistIdEnabled=true&Employee_ID=412762000145976089&Leavetype=412762000037993337&From=29-Jan-2025&To=29-Jan-2025&bereavement_leave_type=&Reasonforleave=personal+reason&zp_tableName=P_EmployeeLeave&loginUserZUID=786352376&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1&zp_formId=412762000000035693&zp_mode=addRecord&29-Jan-2025=%7B%22count%22%3A1%2C%22session%22%3A0%7D&isHour=false&isDayBased=true&Daystaken=1&isDraft=false",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}); ;
+fetch("https://people.zoho.com/hrportal1524046581683/formAction.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "mode=fetchSingleRecord&formId=412762000000035693&recordId=412762000269854035&subMode=VIEW&isApprovalEnabled=true&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}); ;
+fetch("https://people.zoho.com/hrportal1524046581683/leave_common_action.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "key=leavetype_appl&employee=412762000145976089&isView=true&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}); ;
+fetch("https://people.zoho.com/hrportal1524046581683/getApprovalDetails.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "formId=412762000000035693&recordId=412762000269854035&method=getApprovalDetails&conreqcsr=e097dad269e084ada74788a94de591e207c42151478f274096dffe2bff7ce41cc12879456bbf290ed607ca033f7876cf7697987c54c13b503ad774f7f1fbedb1",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});

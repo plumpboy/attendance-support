@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import logo from '../../assets/img/icon-34.png';
 import './Popup.css';
-import {
-  getTypeOfWork,
-  fetchLogData,
-  postWorkLogs,
-  getProjects,
-} from '../../api/sra';
+// import {
+//   getTypeOfWork,
+//   fetchLogData,
+//   postWorkLogs,
+//   getProjects,
+// } from '../../api/sra';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
@@ -45,79 +45,79 @@ const Popup = () => {
 
   const [month, setMonth] = useState(getCurrentMonth(currentDate));
   let tabId;
-  const setLocalStorage = async () => {
-    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-    const fromPageLocalStore = await chrome.scripting.executeScript({
-      target: { tabId: tabs[0].id },
-      function() {
-        return Object.entries(localStorage);
-      },
-    });
-    const localStorageData = fromPageLocalStore?.[0]?.result?.reduce(
-      (acc, [key, value]) => {
-        // Check if value is a valid JSON
-        try {
-          const parsedValue = JSON.parse(value);
-          return { ...acc, [key]: parsedValue };
-        } catch (e) {
-          // If not a valid JSON, return the original value
-          return { ...acc, [key]: value };
-        }
-      },
-      {}
-    );
-    console.log('localStorageData', localStorageData);
-    setLocalStorageData(localStorageData);
-    setErrorMessage('');
-    setSuccessMessage('');
-  };
+  // const setLocalStorage = async () => {
+  //   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  //   const fromPageLocalStore = await chrome.scripting.executeScript({
+  //     target: { tabId: tabs[0].id },
+  //     function() {
+  //       return Object.entries(localStorage);
+  //     },
+  //   });
+  //   const localStorageData = fromPageLocalStore?.[0]?.result?.reduce(
+  //     (acc, [key, value]) => {
+  //       // Check if value is a valid JSON
+  //       try {
+  //         const parsedValue = JSON.parse(value);
+  //         return { ...acc, [key]: parsedValue };
+  //       } catch (e) {
+  //         // If not a valid JSON, return the original value
+  //         return { ...acc, [key]: value };
+  //       }
+  //     },
+  //     {}
+  //   );
+  //   console.log('localStorageData', localStorageData);
+  //   setLocalStorageData(localStorageData);
+  //   setErrorMessage('');
+  //   setSuccessMessage('');
+  // };
 
-  useEffect(() => {
-    if (localStorageData && localStorageData?.accessToken) {
-      chrome.tabs.query(
-        { active: true, currentWindow: true },
-        async function (tabs) {
-          const fromPageLocalStore = await chrome.scripting.executeScript({
-            target: { tabId: tabs[0].id },
-            function() {
-              return Object.entries(localStorage);
-            },
-          });
+  // useEffect(() => {
+  //   if (localStorageData && localStorageData?.accessToken) {
+  //     chrome.tabs.query(
+  //       { active: true, currentWindow: true },
+  //       async function (tabs) {
+  //         const fromPageLocalStore = await chrome.scripting.executeScript({
+  //           target: { tabId: tabs[0].id },
+  //           function() {
+  //             return Object.entries(localStorage);
+  //           },
+  //         });
 
-          const localStorageData = fromPageLocalStore?.[0]?.result?.reduce(
-            (acc, [key, value]) => {
-              // Check if value is a valid JSON
-              try {
-                const parsedValue = JSON.parse(value);
-                return { ...acc, [key]: parsedValue };
-              } catch (e) {
-                // If not a valid JSON, return the original value
-                return { ...acc, [key]: value };
-              }
-            },
-            {}
-          );
-          console.log('localStorageData', localStorageData);
-          setLocalStorageData(localStorageData);
-        }
-      );
-    }
-  }, []);
+  //         const localStorageData = fromPageLocalStore?.[0]?.result?.reduce(
+  //           (acc, [key, value]) => {
+  //             // Check if value is a valid JSON
+  //             try {
+  //               const parsedValue = JSON.parse(value);
+  //               return { ...acc, [key]: parsedValue };
+  //             } catch (e) {
+  //               // If not a valid JSON, return the original value
+  //               return { ...acc, [key]: value };
+  //             }
+  //           },
+  //           {}
+  //         );
+  //         console.log('localStorageData', localStorageData);
+  //         setLocalStorageData(localStorageData);
+  //       }
+  //     );
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (localStorageData?.accessToken) {
-      getTypeOfWork(localStorageData.accessToken).then((data) => {
-        const workType = data.typeOfWorks;
-        const workTypeOption = workType.map((typeOfWork) => ({
-          value: typeOfWork.id,
-          label: typeOfWork.name,
-        }));
-        // workTypeOption.unshift(value: "", lab)
-        setWorkOption(workTypeOption);
-        setWorkType('');
-      });
-    }
-  }, [localStorageData]);
+  // useEffect(() => {
+  //   if (localStorageData?.accessToken) {
+  //     getTypeOfWork(localStorageData.accessToken).then((data) => {
+  //       const workType = data.typeOfWorks;
+  //       const workTypeOption = workType.map((typeOfWork) => ({
+  //         value: typeOfWork.id,
+  //         label: typeOfWork.name,
+  //       }));
+  //       // workTypeOption.unshift(value: "", lab)
+  //       setWorkOption(workTypeOption);
+  //       setWorkType('');
+  //     });
+  //   }
+  // }, [localStorageData]);
 
   useEffect(() => {
     chrome.tabs.query(

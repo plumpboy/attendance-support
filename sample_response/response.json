@@ -1,0 +1,465 @@
+// after request
+{
+  "prevDay": "27-Jan-2025",
+  "isEditAllowedForSub": false,
+  "sDate": "01-Jan-2025",
+  "prevMonthEnd": "31-Dec-2024",
+  "dateFormat": "dd-MMM-yyyy",
+  "timeformat": "HH:mm",
+  "eDate": "31-Jan-2025",
+  "todayDate": "28-Jan-2025",
+  "list": [
+    {
+      "approvalStatus": "Waiting for approval",
+      "formId": "412762000000126067",
+      "recordId": "412762000269854001",
+      "owner": "412762000145976089",
+      "regDetails": [
+        {
+          "intime": "11:17",
+          "regDetailsId": "412762000269854005",
+          "new_totalHours": 32040,
+          "totalHours": 23820,
+          "originday": "22-Jan-2025",
+          "outtime": "19:09",
+          "new_status": "Present",
+          "new_intime": "09:00",
+          "att_status": "Present",
+          "new_outtime": "19:09",
+          "indApprovalStatus": "Waiting for approval",
+          "status": -1
+        }
+      ],
+      "employeeName": "Ph&#x1ea1;m Tr&iacute; Trung",
+      "erecno": "412762000145976089",
+      "employeeId": "3872",
+      "startDate": "22-Jan-2025",
+      "employeeName_notEnc": "Phạm Trí Trung",
+      "status": -1,
+      "empPhoto": "https://contacts.zoho.com/file?ID=786352376&fs=thumb"
+    }
+  ],
+  "prevMonthStart": "01-Dec-2024"
+}
+
+commonACtion
+{
+  "success": true,
+  "response": {
+    "deptNameList": [
+      "Division 6 - General",
+      "Digital Transformation - Internal Services"
+    ],
+    "unitIdList": [],
+    "deptIdList": [
+      "412762000134846081",
+      "412762000192135905"
+    ],
+    "roleIdList": [
+      "412762000000035635",
+      "412762000039857485"
+    ],
+    "OrganizationTagDisPlayName": "",
+    "divIdList": [],
+    "IS_TRANSFER_ALLOWED": false,
+    "entityNameList": [],
+    "hasProfilePicDCF": false,
+    "desiIdList": [
+      "412762000000448700",
+      "412762000000199636"
+    ],
+    "unitNameList": [],
+    "isTransferV2Enabled": false,
+    "userList": [
+      [
+        "",
+        "",
+        "Nam",
+        "V&#x169; H&#x1ed3;ng",
+        "1793",
+        "412762000001909241",
+        "673370263",
+        "1",
+        "namvh&#x40;smartosc.com",
+        "0",
+        "0",
+        "",
+        "0",
+        "0",
+        "",
+        "",
+        "",
+        "0",
+        "0",
+        "0",
+        "",
+        "",
+        "",
+        "",
+        "",
+        5
+      ],
+      [
+        "",
+        "",
+        "Notify",
+        "SBS",
+        "3310",
+        "412762000101166243",
+        "764732401",
+        "1",
+        "sbs-notify&#x40;smartosc.com",
+        "0",
+        "1",
+        "",
+        "0",
+        "1",
+        "",
+        "",
+        "",
+        "1",
+        "1",
+        "1",
+        "",
+        "",
+        "",
+        "",
+        "",
+        5
+      ]
+    ],
+    "roleNameList": [
+      "Team member",
+      "SBS Admin"
+    ],
+    "reposList": [
+      "412762000000144187",
+      "412762000211750440"
+    ],
+    "divNameList": [],
+    "locIdList": [
+      "412762000000120399",
+      "412762000000117006"
+    ],
+    "entityIdList": [],
+    "desiNameList": [
+      "Technical Manager",
+      "Fresher"
+    ],
+    "tagMap": "{}",
+    "orgStructureDispNameMap": "{\"division\":\"Division\",\"unit\":\"Business Unit\",\"department\":\"Center&#x2f; Function\",\"entity\":\"Company\"}",
+    "isOrgstructureFilterRestricted": false,
+    "locNameList": [
+      "Ha Noi",
+      "Ho Chi Minh"
+    ]
+  }
+}
+/// response apply leaves
+[
+  {
+    "pkId": "412762000269854035",
+    "code": 7000,
+    "message": "Successfully Added"
+  }
+]
+// fetch
+{
+  "isAllowedToeditPendingUserMail": false,
+  "isAllowedEditFromNode": false,
+  "isAllowedDelete": false,
+  "code": 7000,
+  "canResubmit": false,
+  "isAllowedToeditEmailId": false,
+  "allowedRoleIdsForEdit": [],
+  "message": {
+    "approvalStatus": -1,
+    "isTTCustomAdminForEntriesEdit": false,
+    "isDraft": false,
+    "isTTCustomAdminForEntriesView": false,
+    "customActions": [],
+    "recordDetails": [
+      {
+        "sectionName": "Leave",
+        "column1": [
+          {
+            "componentType": 26,
+            "componentValue": "Ph&#x1ea1;m Tr&iacute; Trung - 3872",
+            "displayType": 100,
+            "isEditable": true,
+            "displayName": "Employee ID",
+            "componentValue_ID": "412762000145976089",
+            "componentName": "Employee_ID",
+            "formComponentId": "412762000000036103"
+          },
+          {
+            "componentType": 26,
+            "componentValue": "Annual Leave",
+            "displayType": 100,
+            "isEditable": true,
+            "displayName": "Leave type",
+            "componentValue_ID": "412762000037993337",
+            "componentName": "Leavetype",
+            "formComponentId": "412762000000036105"
+          },
+          {
+            "componentType": 10,
+            "componentValue": "29-Jan-2025",
+            "isEditable": true,
+            "displayName": "From",
+            "componentName": "From",
+            "formComponentId": "412762000000036109"
+          },
+          {
+            "componentType": 10,
+            "componentValue": "29-Jan-2025",
+            "isEditable": true,
+            "displayName": "To",
+            "componentName": "To",
+            "formComponentId": "412762000000036111"
+          },
+          {
+            "componentType": 1,
+            "componentValue": "1",
+            "isEditable": true,
+            "displayName": "Days Taken",
+            "componentName": "ZP_Leave_Unit",
+            "formComponentId": "412762000046309001"
+          },
+          {
+            "componentType": 10,
+            "componentValue": "29-Jan-2025",
+            "isEditable": false,
+            "displayName": "Date of request",
+            "componentName": "DateOfRequest",
+            "formComponentId": "412762000000036113"
+          },
+          {
+            "componentType": 3,
+            "componentValue": "personal reason",
+            "isEditable": true,
+            "displayName": "Reason for leave",
+            "componentName": "Reasonforleave",
+            "formComponentId": "412762000000036119"
+          },
+          {
+            "componentType": 25,
+            "componentValue": "",
+            "displayType": 101,
+            "isEditable": false,
+            "displayName": "Bereavement Leave Type",
+            "componentName": "bereavement_leave_type",
+            "formComponentId": "412762000120965023"
+          },
+          {
+            "componentType": 25,
+            "componentValue": "",
+            "displayType": 101,
+            "isEditable": false,
+            "displayName": "Bereavement Leave Type &#x28;KOR&#x29;",
+            "componentName": "bereavement_leave_type_kor",
+            "formComponentId": "412762000251992547"
+          }
+        ],
+        "isTabular": false,
+        "isGridType": false,
+        "sectionId": "412762000000036039"
+      }
+    ],
+    "isTaskAvailable": false,
+    "ownerID": [
+      "412762000145976089"
+    ],
+    "isAllowedEdit": false,
+    "isSampleData": false,
+    "isProjectHeadOrManager": false,
+    "isSPOCLvViewAdmin": false,
+    "cAuditInfo": {
+      "cgeoInfo": {
+        "lon": "",
+        "lat": ""
+      },
+      "ModifiedTime": true,
+      "cInfo": {
+        "time": "29-Jan-2025 00:06:35",
+        "user": {
+          "photopath": "",
+          "name": "Phạm Trí Trung",
+          "id": "3872 ",
+          "ERECNO": "412762000145976089",
+          "zuid": "786352376"
+        }
+      },
+      "mgeoInfo": {
+        "geo": "",
+        "lon": "",
+        "lat": ""
+      },
+      "mInfo": {
+        "24time": "29-Jan-2025 00:06",
+        "time": "29-Jan-2025 00:06:35",
+        "user": {
+          "photopath": "",
+          "name": "Phạm Trí Trung",
+          "id": "3872 ",
+          "ERECNO": "412762000145976089",
+          "zuid": "786352376"
+        }
+      },
+      "AddedTime": true,
+      "ModifiedBy": true,
+      "AddedBy": true
+    },
+    "header": {
+      "lName": "Phạm Trí",
+      "fName": "Trung",
+      "erec": "412762000145976089",
+      "useAccPhoto": true,
+      "id": "3872",
+      "zuid": 786352376
+    },
+    "isSPOCLvEditAdmin": false
+  },
+  "isAllowedEdit": false,
+  "allowedRoleIds": [
+    "412762000000035635"
+  ],
+  "viewType": 1,
+  "isRecordAdmin": false,
+  "extraDetails": {
+    "recordImmutable": false,
+    "isInactiveRecord": false,
+    "showCancel": true,
+    "allowEdit": false,
+    "fullDayMins": 480,
+    "isabsentRecord": false,
+    "dayDetails": {
+      "isQuarterDayAllowed": true,
+      "isPartialCancelAllowed": false,
+      "leavetaken": "1.0",
+      "isHalfDayAllowed": true,
+      "employee": "412762000145976089",
+      "showFileUploadAfter": 0,
+      "transactions": [
+        {
+          "date": "01-Jan-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "added": 1,
+          "runningbalance": 4.75,
+          "isCurrentBooking": false,
+          "type": 15
+        },
+        {
+          "date": "29-Jan-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "runningbalance": 3.75,
+          "isCurrentBooking": true,
+          "used": 1,
+          "type": 21
+        },
+        {
+          "date": "01-Feb-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "added": 1,
+          "runningbalance": 4.75,
+          "isCurrentBooking": false,
+          "type": 15
+        },
+        {
+          "date": "01-Mar-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "added": 1,
+          "runningbalance": 5.75,
+          "isCurrentBooking": false,
+          "type": 15
+        },
+        {
+          "date": "31-Mar-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "runningbalance": 3,
+          "isCurrentBooking": false,
+          "used": 2.75,
+          "type": 71
+        },
+        {
+          "date": "01-Apr-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "added": 1,
+          "runningbalance": 4,
+          "isCurrentBooking": false,
+          "type": 15
+        },
+        {
+          "date": "01-May-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "added": 1,
+          "runningbalance": 5,
+          "isCurrentBooking": false,
+          "type": 15
+        },
+        {
+          "date": "01-Jun-2025",
+          "isEmpExitEntry": false,
+          "isArchive": false,
+          "added": 1,
+          "runningbalance": 6,
+          "isCurrentBooking": false,
+          "type": 15
+        }
+      ],
+      "isCompoff": false,
+      "showFileUpload": false,
+      "reportsummary": {
+        "IS_ALLOWED_TO_VIEW_TRANSACTIONS": true,
+        "ACCRUEDTILLDATE": 1,
+        "IS_ACCUMULATED_BALANCE": true,
+        "UNIT": "Day(s)",
+        "CURRENTBOOKING": 1,
+        "YEARSTARTINGBALANCE": 3.75,
+        "BALANCE_AFTER_BOOKING": 3.75,
+        "YEAR_END": "31-Dec-2025",
+        "LEAVE_DATE": "29-Jan-2025",
+        "AVAILED_PRESET_AND_FUTURE": 0,
+        "showAdvancedInfo": false,
+        "CURRENTBALANCE": 4.75,
+        "UNIT_TXT": "Day(s)",
+        "AVAILEDTILLDATE": 1,
+        "YEAR_START": "01-Jan-2025",
+        "YSB_PLUS_ATD": 4.75
+      },
+      "isDayBased": true,
+      "dateArr": [
+        {
+          "date": "29-Jan-2025",
+          "isquarterday": false,
+          "inactive": false,
+          "isholiday": false,
+          "color": "ZPC1",
+          "isweekend": false,
+          "leaveSession": 0,
+          "leavecount": 1,
+          "ishalfday": false,
+          "day": "Wed"
+        }
+      ],
+      "isV2": true,
+      "from": "29-Jan-2025",
+      "daysTaken": "1.0",
+      "to": "29-Jan-2025",
+      "isDayAndHourAllowed": false,
+      "teamMembersOnLeave": 0,
+      "leavetypeId": "412762000037993337"
+    }
+  },
+  "isExistingMobileUser": false,
+  "orgStructureRoleRecordAdmin": false,
+  "canCancel": true,
+  "isPrimaryAppr": false
+}

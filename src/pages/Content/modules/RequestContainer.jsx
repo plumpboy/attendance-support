@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchAttandanceData } from '@services/attendance';
 
 const RequestContainer = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('requests');
+  const [attandanceData, setAttandanceData] = useState([]);
 
+  useEffect(() => {
+    fetchAttandanceData().then((data) => {
+      setAttandanceData(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log('attandanceData', attandanceData);
+  }, [attandanceData]);
   // Sample list of items
   const requests = [
     { id: 1, date: '20-01-2025', from: '6:00', to: '8:00', type: 'Fix-time' },
@@ -24,13 +35,19 @@ const RequestContainer = () => {
     alert(`You clicked Skip for ${item.title}`);
   };
 
+  const togglePopup = () => {
+    const bottomPaging = document.querySelector('.zpl_tblpagination');
+    console.log('bottomPaging', bottomPaging);
+    if (bottomPaging) {
+      bottomPaging.style.display = !isPopupVisible ? 'none' : 'flex';
+    }
+    setIsPopupVisible(!isPopupVisible);
+  };
+
   return (
     <div className="zas-root">
       {/* Toggle Button */}
-      <button
-        className="toggle-button"
-        onClick={() => setIsPopupVisible(!isPopupVisible)}
-      >
+      <button className="toggle-button" onClick={togglePopup}>
         Attendance Support
       </button>
 
@@ -38,7 +55,7 @@ const RequestContainer = () => {
       {isPopupVisible && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <div className="header">
+            <div className="popup-header">
               <h2>Items List</h2>
               <button
                 className="close-button"
