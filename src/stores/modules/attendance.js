@@ -21,36 +21,6 @@ const morningEnd = parse('12:00', 'HH:mm', new Date());
 const afternoonStart = parse('13:15', 'HH:mm', new Date());
 const afternoonEnd = parse('19:30', 'HH:mm', new Date());
 
-const quarter_1 = {
-  from: parse('08:00', 'HH:mm', new Date()),
-  to: parse('10:00', 'HH:mm', new Date()),
-};
-
-const quarter_2 = {
-  from: parse('10:00', 'HH:mm', new Date()),
-  to: parse('12:00', 'HH:mm', new Date()),
-};
-
-const quarter_3 = {
-  from: parse('13:15', 'HH:mm', new Date()),
-  to: parse('15:15', 'HH:mm', new Date()),
-};
-
-const quarter_4 = {
-  from: parse('15:15', 'HH:mm', new Date()),
-  to: parse('17:15', 'HH:mm', new Date()),
-};
-
-const half_1 = {
-  from: parse('08:00', 'HH:mm', new Date()),
-  to: parse('12:00', 'HH:mm', new Date()),
-};
-
-const half_2 = {
-  from: parse('13:15', 'HH:mm', new Date()),
-  to: parse('17:15', 'HH:mm', new Date()),
-};
-
 const daysList = {
   "regDetails": {
     "15-Feb-2025": {
@@ -512,7 +482,6 @@ const mapDaysToLateAndAbsent = (dayslist) => {
     lateDaysCount: 0,
     absentDaysCount: 0,
     leaveDaysCount: 0,
-    presentDays: 0,
     remainAbsentRequests: 0,
     remainLeaveRequests: 0,
     standardWorkingDays: 0,
@@ -520,8 +489,13 @@ const mapDaysToLateAndAbsent = (dayslist) => {
 
   dayslist.regDetails.dayList.forEach((key) => {
     const day = dayslist.regDetails[key];
-    const paidableHours = calculatePaidableHours(day.fromdate, day.todate); // Convert minutes to hours
-    if (paidableHours >= 6 && paidableHours < 8) {
+    if (day.isWeekend || day.isHoliday) {
+      return;
+    }
+    day.fromdate = day.fromdate || '00:00';
+    day.todate = day.todate || '00:00';
+    const paidableHours = calculatePaidableHours(day.fromdate, day.todate); // hour in minutes
+    if (paidableHours >= 360 && paidableHours < 480) {
       lateDays.push({
         date: key,
         from: day.fromdate,
@@ -530,7 +504,7 @@ const mapDaysToLateAndAbsent = (dayslist) => {
         totalHours: totalHours,
       });
       status.lateDaysCount += 1;
-    } else if (paidableHours < 6) {
+    } else if (paidableHours < 360) {
       absentDays.push({
         date: key,
         from: day.fromdate,
@@ -554,11 +528,12 @@ const initialState = {
     lateDaysCount: 0,
     absentDaysCount: 0,
     leaveDaysCount: 0,
-    presentDays: 0,
-    remainAbsentRequests: 0,
+    remainFixTimeRequests: 0,
     remainLeaveRequests: 0,
     standardWorkingDays: 0,
   },
+  currentMonthFixTimeRequests: [],
+  currentMonthLeaveRequests: [],
   lateDays: [
     // {
     //   date: '01-01-2021',
@@ -584,7 +559,7 @@ const initialState = {
     //   }
     // },
   ],
-  absentRequests: [
+  fixTimeRequests: [
 
   ],
   leaveRequests: [{
@@ -745,7 +720,7 @@ function calculatePaidableHours(from, to) {
   let checkin = parse(from, 'HH:mm', new Date());
   let checkout = parse(to, 'HH:mm', new Date());
 
-  let paidableSeconds = 0;
+  let paidableMinutes = 0;
 
   if (isBefore(checkin, morningStart)) checkin = morningStart;
   if (isAfter(checkout, afternoonEnd)) checkout = afternoonEnd;
@@ -753,70 +728,138 @@ function calculatePaidableHours(from, to) {
   if (isBefore(checkin, morningEnd) && isAfter(checkout, morningStart)) {
     const morningCheckin = max([checkin, morningStart]);
     const morningCheckout = min([checkout, morningEnd]);
-    paidableSeconds += differenceInMinutes(morningCheckout, morningCheckin) * 60;
+    paidableMinutes += differenceInMinutes(morningCheckout, morningCheckin);
   }
 
   if (isBefore(checkin, afternoonEnd) && isAfter(checkout, afternoonStart)) {
     const afternoonCheckin = max([checkin, afternoonStart]);
     const afternoonCheckout = min([checkout, afternoonEnd]);
-    paidableSeconds += differenceInMinutes(afternoonCheckout, afternoonCheckin) * 60;
+    paidableMinutes += differenceInMinutes(afternoonCheckout, afternoonCheckin);
   }
 
-  return paidableSeconds;
+  return paidableMinutes;
 }
-/*
-  based on checkin and checkout time, quarter_1, quarter_2, quarter_3, quarter_4
-  half_1, half_2, calculate the time range must be used to apply leave request
- */
-function applyLeaveRequestOnLateDays(state) {
-  const {
-    lateDays
-  } = state;
-  lateDays.forEach((day) => {
-    const {
-      from,
-      to,
-      paidableHours
-    } = day;
-    const leaveTime = calculateLeaveTime(from, to, paidableHours);
-    day.leaveTime = leaveTime;
+
+function timeRangeContains(outerStart, outerEnd, innerStart, innerEnd) {
+  function timeToMinutes(time) {
+    if (typeof time === 'string') {
+      const [hours, minutes] = time.split(":").map(Number);
+      return hours * 60 + minutes;
+    }
+    return time;
+  }
+
+  const outerStartTime = timeToMinutes(outerStart);
+  const outerEndTime = timeToMinutes(outerEnd);
+  const innerStartTime = timeToMinutes(innerStart);
+  const innerEndTime = timeToMinutes(innerEnd);
+
+  return outerStartTime <= innerStartTime && outerEndTime >= innerEndTime;
+}
+
+function calculateMissingTimeAndLeaveRequests(checkIn, checkOut, requiredWorkMinutes) {
+  function timeToMinutes(time) {
+    const [hours, minutes] = time.split(":").map(Number);
+    return hours * 60 + minutes;
+  }
+
+  requiredWorkMinutes = requiredWorkMinutes || 8 * 60;
+
+  let checkInTime = timeToMinutes(checkIn);
+  let checkOutTime = timeToMinutes(checkOut);
+
+  let workedMinutes = 0;
+  for (const [start, end] of validWorkingPeriods) {
+    let startWork = Math.max(checkInTime, start);
+    let endWork = Math.min(checkOutTime, end);
+    if (startWork < endWork) {
+      workedMinutes += (endWork - startWork);
+    }
+  }
+
+  let missingMinutes = Math.max(0, requiredWorkMinutes - workedMinutes);
+  const originMissingMinutes = missingMinutes;
+  if (missingMinutes === 0) {
+    return {
+      missingMinutes,
+      leaveRequests: []
+    };
+  }
+
+  const leaveOptions = {
+    "2h": [
+      [timeToMinutes("08:00"), timeToMinutes("10:00")],
+      [timeToMinutes("10:00"), timeToMinutes("12:00")],
+      [timeToMinutes("13:15"), timeToMinutes("15:15")],
+      [timeToMinutes("15:15"), timeToMinutes("17:15")]
+    ],
+    "4h": [
+      [timeToMinutes("08:00"), timeToMinutes("12:00")],
+      [timeToMinutes("13:15"), timeToMinutes("17:15")]
+    ],
+    "8h": [
+      [timeToMinutes("08:00"), timeToMinutes("17:15")]
+    ]
+  };
+
+  let leaveRequests = [];
+  let availableLeaves = [];
+
+  for (const [type, ranges] of Object.entries(leaveOptions)) {
+    for (const [start, end] of ranges) {
+      if (!timeRangeContains(checkInTime, checkOutTime, start, end)) {
+        availableLeaves.push({
+          type,
+          from: start,
+          to: end,
+          duration: end - start
+        });
+      }
+    }
+  }
+
+  availableLeaves.sort((a, b) => a.duration - b.duration);
+
+  availableLeaves = availableLeaves.filter((leave, index, arr) => {
+    return !arr.some(other => other.duration < leave.duration && timeRangeContains(other.from, other.to, leave.from, leave.to));
   });
-  return state;
-}
 
-// based on checkin and checkout time, morningStart, morningEnd
-// afternoonStart, afternoonEnd, calculate the time must be used to apply leave request
+  let mergedLeaves = [];
+  for (let i = 0; i < availableLeaves.length; i++) {
+    let current = availableLeaves[i];
+    if (mergedLeaves.length > 0 && mergedLeaves[mergedLeaves.length - 1].to === current.from) {
+      let totalDuration = mergedLeaves[mergedLeaves.length - 1].duration + current.duration;
+      if (totalDuration === 240 || totalDuration === 480) { // Only merge if sum is 4h or 8h
+        let mergedLeave = {
+          type: totalDuration === 240 ? "4h" : "8h",
+          from: mergedLeaves[mergedLeaves.length - 1].from,
+          to: current.to,
+          duration: totalDuration
+        };
+        mergedLeaves.pop();
+        mergedLeaves.push(mergedLeave);
+      } else {
+        mergedLeaves.push(current);
+      }
+    } else {
+      mergedLeaves.push(current);
+    }
+  }
 
-function calculateLeaveTime(from, to, paidableHours) {
-  let checkin = parse(from, 'HH:mm', new Date());
-  let checkout = parse(to, 'HH:mm', new Date());
+  for (const leave of mergedLeaves) {
+    if (missingMinutes <= 0) break;
+    leaveRequests.push({
+      type: leave.type,
+      from: leave.from,
+      to: leave.to
+    });
+    missingMinutes -= leave.duration;
+  }
 
-  // morningCheckin = min([checkin, morningStart]);
-  // morningCheckout = max([checkout, morningEnd]);
-
-  // afternoonCheckin = checkin > afternoonStart ? checkin : afternoonStart;
-  // afternoonCheckout = checkout < afternoonEnd ? checkout : afternoonEnd;
-
-  morningPaidableHours = calculateMorningPaidableHours(checkin, checkout);
-  afternoonPaidableHours = calculateAfternoonPaidableHours(checkin, checkout);
-
-  const morningAvaiableLeaveTime = calculateMorningLeaveTime(checkin, checkout);
-}
-
-// based on checkin and checkout time, morningStart, morningEnd
-// calculate morning paidable hours
-function calculateMorningPaidableHours(checkin, checkout) {
-  const morningCheckin = max([checkin, morningStart]);
-  const morningCheckout = min([checkout, morningEnd]);
-
-  return calculatePaidableHours(morningCheckin, morningCheckout);
-}
-
-function calculateAfternoonPaidableHours(checkin, checkout) {
-  const afternoonCheckin = max([checkin, afternoonStart]);
-  const afternoonCheckout = isBefore(checkout, afternoonStart) ? afternoonStart : min([checkout, afternoonEnd]);
-
-  return calculatePaidableHours(afternoonCheckin, afternoonCheckout);
+  return {
+    originMissingMinutes,
+    leaveRequests
+  };
 }
 
 function applyRequestsOnDays(days, requests, remainRequests) {
