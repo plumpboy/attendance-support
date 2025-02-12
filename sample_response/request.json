@@ -227,3 +227,167 @@ fetch("https://people.zoho.com/hrportal1524046581683/addUpdateRecord.zp",
     "message": "Successfully Added"
   }
 ]
+// pending leave
+fetch("https://people.zoho.com/hrportal1524046581683/leave_view_actions.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Chromium\";v=\"130\", \"Google Chrome\";v=\"130\", \"Not?A_Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Linux\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "key=applications_view&viewMode=1&from=01-Jan-2025&to=31-Dec-2025&typeofleave=-1&employee=%5B%22412762000145976089%22%5D&conreqcsr=9d69f7f627c1d81aa499ba74a070958e62448b02fe6948a602279f56d8721c6dcf9f40cf2ee2bf5cd98a43fa350550901bceb8df98a9e3e890c0b5f316a74c5c&status=-1&sortType=1&sortBy=3&sIndx=1&limit=20",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+{
+  "data": [
+    {
+      "dateofrequest": "04-Feb-2025",
+      "erecno": "412762000145976089",
+      "allowdelete": false,
+      "leavetaken": 0.5,
+      "approval_status": 2,
+      "allowedit": false,
+      "leaveunit": "Day(s)",
+      "emp_name": "Phạm Trí Trung",
+      "photo": "https://contacts.zoho.com/file?ID=786352376&fs=thumb",
+      "rec_id": "412762000270209080",
+      "ltyp_name": "Annual Leave",
+      "ltyp_type": 0,
+      "approval_disp": "Cancelled",
+      "from": "04-Feb-2025",
+      "to": "04-Feb-2025",
+      "emp_id": "3872"
+    },
+    {
+      "dateofrequest": "04-Feb-2025",
+      "erecno": "412762000145976089",
+      "allowdelete": false,
+      "leavetaken": 0.25,
+      "approval_status": 2,
+      "allowedit": false,
+      "leaveunit": "Day(s)",
+      "emp_name": "Phạm Trí Trung",
+      "photo": "https://contacts.zoho.com/file?ID=786352376&fs=thumb",
+      "rec_id": "412762000270209022",
+      "ltyp_name": "Annual Leave",
+      "ltyp_type": 0,
+      "approval_disp": "Cancelled",
+      "from": "04-Feb-2025",
+      "to": "04-Feb-2025",
+      "emp_id": "3872"
+    },
+    {
+      "dateofrequest": "03-Feb-2025",
+      "erecno": "412762000145976089",
+      "allowdelete": false,
+      "leavetaken": 0.5,
+      "approval_status": 2,
+      "allowedit": false,
+      "leaveunit": "Day(s)",
+      "emp_name": "Phạm Trí Trung",
+      "photo": "https://contacts.zoho.com/file?ID=786352376&fs=thumb",
+      "rec_id": "412762000269904769",
+      "ltyp_name": "Annual Leave",
+      "ltyp_type": 0,
+      "approval_disp": "Cancelled",
+      "from": "03-Feb-2025",
+      "to": "03-Feb-2025",
+      "emp_id": "3872"
+    },
+    {
+      "dateofrequest": "29-Jan-2025",
+      "erecno": "412762000145976089",
+      "allowdelete": false,
+      "leavetaken": 1,
+      "approval_status": 2,
+      "allowedit": false,
+      "leaveunit": "Day(s)",
+      "emp_name": "Phạm Trí Trung",
+      "photo": "https://contacts.zoho.com/file?ID=786352376&fs=thumb",
+      "rec_id": "412762000269854035",
+      "ltyp_name": "Annual Leave",
+      "ltyp_type": 0,
+      "approval_disp": "Cancelled",
+      "from": "29-Jan-2025",
+      "to": "29-Jan-2025",
+      "emp_id": "3872"
+    }
+  ],
+  "count": 4,
+  "allowAdd": true,
+  "status": "success"
+}
+////
+//pending attendance
+fetch("https://people.zoho.com/hrportal1524046581683/AttendanceAction.zp",
+{
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7,ja;q=0.6,fr-FR;q=0.5,fr;q=0.4",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "sec-ch-ua": "\"Chromium\";v=\"130\", \"Google Chrome\";v=\"130\", \"Not?A_Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Linux\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://people.zoho.com/hrportal1524046581683/zp",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "mode=getMyRequest&conreqcsr=9d69f7f627c1d81aa499ba74a070958e62448b02fe6948a602279f56d8721c6dcf9f40cf2ee2bf5cd98a43fa350550901bceb8df98a9e3e890c0b5f316a74c5c&sDate=01-Feb-2025&eDate=28-Feb-2025&erecno=%5B%22412762000145976089%22%5D",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+{
+  "tDate": "28-Feb-2025",
+  "isEditAllowedForSub": false,
+  "dateFormat": "dd-MMM-yyyy",
+  "fDate": "01-Feb-2025",
+  "timeformat": "HH:mm",
+  "list": [
+    {
+      "approvalStatus": "Cancelled",
+      "formId": "412762000000126067",
+      "recordId": "412762000270209138",
+      "owner": "412762000145976089",
+      "regDetails": [
+        {
+          "intime": "09:46",
+          "regDetailsId": "412762000270209142",
+          "new_totalHours": 29640,
+          "totalHours": 1740,
+          "originday": "04-Feb-2025",
+          "outtime": "10:15",
+          "new_status": "Present",
+          "new_intime": "09:46",
+          "att_status": "Present",
+          "new_outtime": "19:15",
+          "indApprovalStatus": "Cancelled",
+          "status": 2
+        }
+      ],
+      "employeeName": "Ph&#x1ea1;m Tr&iacute; Trung",
+      "erecno": "412762000145976089",
+      "employeeId": "3872",
+      "startDate": "04-Feb-2025",
+      "employeeName_notEnc": "Phạm Trí Trung",
+      "status": 2, // 2: Cancelled, 1: Approved, -1: Pending, 0: Rejected
+      "empPhoto": "https://contacts.zoho.com/file?ID=786352376&fs=thumb"
+    }
+  ],
+  "dispMonth": "Feb 2025"
+}

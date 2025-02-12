@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAttandanceData } from '@services/attendance';
 
 const RequestContainer = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -7,9 +6,9 @@ const RequestContainer = () => {
   const [attandanceData, setAttandanceData] = useState([]);
 
   useEffect(() => {
-    fetchAttandanceData().then((data) => {
-      setAttandanceData(data);
-    });
+    // fetchAttandanceData().then((data) => {
+    //   setAttandanceData(data);
+    // });
   }, []);
 
   useEffect(() => {

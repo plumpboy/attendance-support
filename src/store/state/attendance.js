@@ -467,62 +467,6 @@ const daysList = {
   "isPopulateReqd": false
 }
 
-const getCurrentMonth = () => {
-  const date = new Date();
-  const month = date.getMonth() + 1; // getMonth() returns month from 0-11
-  const year = date.getFullYear();
-
-  return `${month < 10 ? '0' : ''}${month}-${year}`;
-};
-
-const mapDaysToLateAndAbsent = (dayslist) => {
-  const lateDays = [];
-  const absentDays = [];
-  const status = {
-    lateDaysCount: 0,
-    absentDaysCount: 0,
-    leaveDaysCount: 0,
-    remainAbsentRequests: 0,
-    remainLeaveRequests: 0,
-    standardWorkingDays: 0,
-  };
-
-  dayslist.regDetails.dayList.forEach((key) => {
-    const day = dayslist.regDetails[key];
-    if (day.isWeekend || day.isHoliday) {
-      return;
-    }
-    day.fromdate = day.fromdate || '00:00';
-    day.todate = day.todate || '00:00';
-    const paidableHours = calculatePaidableHours(day.fromdate, day.todate); // hour in minutes
-    if (paidableHours >= 360 && paidableHours < 480) {
-      lateDays.push({
-        date: key,
-        from: day.fromdate,
-        to: day.todate,
-        paidableHours: paidableHours,
-        totalHours: totalHours,
-      });
-      status.lateDaysCount += 1;
-    } else if (paidableHours < 360) {
-      absentDays.push({
-        date: key,
-        from: day.fromdate,
-        to: day.todate,
-        paidableHours: paidableHours,
-        totalHours: totalHours,
-      });
-      status.absentDaysCount += 1;
-    }
-  });
-
-  return {
-    lateDays,
-    absentDays,
-    status
-  };
-};
-
 const initialState = {
   status: {
     lateDaysCount: 0,
@@ -632,6 +576,62 @@ const initialState = {
     }
   ],
   currentMonth: getCurrentMonth(),
+};
+
+const getCurrentMonth = () => {
+  const date = new Date();
+  const month = date.getMonth() + 1; // getMonth() returns month from 0-11
+  const year = date.getFullYear();
+
+  return `${month < 10 ? '0' : ''}${month}-${year}`;
+};
+
+const mapDaysToLateAndAbsent = (dayslist) => {
+  const lateDays = [];
+  const absentDays = [];
+  const status = {
+    lateDaysCount: 0,
+    absentDaysCount: 0,
+    leaveDaysCount: 0,
+    remainAbsentRequests: 0,
+    remainLeaveRequests: 0,
+    standardWorkingDays: 0,
+  };
+
+  dayslist.regDetails.dayList.forEach((key) => {
+    const day = dayslist.regDetails[key];
+    if (day.isWeekend || day.isHoliday) {
+      return;
+    }
+    day.fromdate = day.fromdate || '00:00';
+    day.todate = day.todate || '00:00';
+    const paidableHours = calculatePaidableHours(day.fromdate, day.todate); // hour in minutes
+    if (paidableHours >= 360 && paidableHours < 480) {
+      lateDays.push({
+        date: key,
+        from: day.fromdate,
+        to: day.todate,
+        paidableHours: paidableHours,
+        totalHours: totalHours,
+      });
+      status.lateDaysCount += 1;
+    } else if (paidableHours < 360) {
+      absentDays.push({
+        date: key,
+        from: day.fromdate,
+        to: day.todate,
+        paidableHours: paidableHours,
+        totalHours: totalHours,
+      });
+      status.absentDaysCount += 1;
+    }
+  });
+
+  return {
+    lateDays,
+    absentDays,
+    status
+  };
 };
 
 /*
@@ -884,7 +884,7 @@ function applyRequestsOnDays(days, requests, remainRequests) {
   after send the request to the server (do in another service),
   update the status of the request
 */
-function submitRequest(state) {
+function submitRequests(state) {
   // update the status in state
   return state;
 }
@@ -902,18 +902,18 @@ export const attendanceSlice = createSlice({
     initCurrentStatusData: (state, data) => {
       return mapDaysToLateAndAbsent(data || daysList);
     },
-    applyRequests: (state) => {
+    applyRequest: (state) => {
       return applyRequests(state);
     },
     submitRequest: (state) => {
-      return submitRequest(state);
+      return submitRequests(state);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  applyRequests,
+  applyRequest,
   submitRequest
 } = attendanceSlice.actions;
 

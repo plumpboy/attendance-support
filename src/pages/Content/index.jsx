@@ -2,7 +2,8 @@ import RequestContainer from './modules/RequestContainer';
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-console.log('Content script works!');
+import { store } from '@store';
+import { Provider } from 'react-redux';
 
 const menu = document.getElementById('top_right_menu');
 const app = document.createElement('div');
@@ -13,7 +14,9 @@ menu.prepend(app);
 const root = createRoot(app);
 
 root.render(
-  <React.StrictMode>
-    <RequestContainer />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <RequestContainer />
+    </React.StrictMode>
+  </Provider>
 );

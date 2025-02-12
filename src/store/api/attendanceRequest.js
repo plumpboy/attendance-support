@@ -4,6 +4,7 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import Request from '@utils/requestZoho';
 import Transformer from '@utils/transformer';
+import axios from 'axios';
 
 // Get current URL of the page
 const empid = document.querySelector('img#zpeople_userimage').getAttribute('empid');
@@ -11,8 +12,8 @@ const empid = document.querySelector('img#zpeople_userimage').getAttribute('empi
 // Get cookie key CSRF_TOKEN from current tab
 const conreqcsr = document.cookie
   .split('; ')
-  .find((row) => row.startsWith('CSRF_TOKEN=')) ?
-  .split('=')[1];
+  .find((row) => row.startsWith('CSRF_TOKEN='))
+  ?.split('=')[1];
 
 const today = new Date();
 const currentMonth = today.getMonth();
@@ -40,20 +41,45 @@ const formattedToDate = toDate
 // Define the base URL for the API
 const BASE_URL = 'https://people.zoho.com/hrportal1524046581683/AttendanceAction.zp';
 
+// Create an axios instance
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Accept': '*/*',
+    'CSRF_TOKEN': conreqcsr,
+  },
+});
+
 // Create an API slice
-export const leaveApi = createApi({
-  reducerPath: 'attendanceApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL,
-    prepareHeaders: (headers) => {
-      headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-      headers.set('Accept', '*/*');
-      headers.set('CSRF_TOKEN', conreqcsr);
-      return headers;
-    },
-  }),
+export const attendanceRequestApi = createApi({
+  reducerPath: 'attendanceRequestApi',
+  baseQuery: async ({
+    url,
+    method,
+    body
+  }) => {
+    try {
+      const response = await axiosInstance({
+        url,
+        method,
+        data: body,
+      });
+      return {
+        data: Transformer.transform(response.data)
+      };
+    } catch (axiosError) {
+      let err = axiosError;
+      return {
+        error: {
+          status: err.response?.status,
+          data: err.response?.data || err.message,
+        },
+      };
+    }
+  },
   endpoints: (builder) => ({
-    getLeaveRequestsList: builder.query({
+    getAttendanceData: builder.query({
       query: () => ({
         url: '',
         method: 'POST',
@@ -65,26 +91,10 @@ export const leaveApi = createApi({
           toDate: formattedToDate,
         }),
       }),
-      transformResponse: (response) => Transformer.transform(response),
-    }),
-    addLeaveRequest: builder.query({
-      query: () => ({
-        url: '',
-        method: 'POST',
-        body: new URLSearchParams({
-          mode: 'bulkAttendReg',
-          conreqcsr,
-          empid,
-          fromDate: formattedFromDate,
-          toDate: formattedToDate,
-        }),
-      }),
-      transformResponse: (response) => Transformer.transform(response),
     }),
   }),
 });
 
 export const {
-  getLeaveRequestsList,
-  addLeaveRequest,
-} = leaveApi;
+  getAttendanceData,
+} = attendanceRequestApi;
