@@ -15,6 +15,7 @@ import {
 import {
   ca
 } from 'date-fns/locale';
+import { attendanceRequestApi } from '../api/attendanceRequest';
 
 const morningStart = parse('07:30', 'HH:mm', new Date());
 const morningEnd = parse('12:00', 'HH:mm', new Date());
@@ -908,6 +909,21 @@ export const attendanceSlice = createSlice({
     submitRequest: (state) => {
       return submitRequests(state);
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addMatcher(attendanceRequestApi.endpoints.getAttendanceData.matchPending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addMatcher(attendanceRequestApi.endpoints.getAttendanceData.matchFulfilled, (state, action) => {
+        state.user = action.payload;
+        state.loading = false;
+      })
+      .addMatcher(attendanceRequestApi.endpoints.getAttendanceData.matchRejected, (state, action) => {
+        state.error = action.error;
+        state.loading = false;
+      });
   },
 });
 

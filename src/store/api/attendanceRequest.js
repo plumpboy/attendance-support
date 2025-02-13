@@ -98,3 +98,5 @@ export const attendanceRequestApi = createApi({
 export const {
   getAttendanceData,
 } = attendanceRequestApi;
+
+export const { useattendanceRequestApiMutation } = attendanceRequestApi;
