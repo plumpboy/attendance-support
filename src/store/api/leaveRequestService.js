@@ -41,8 +41,8 @@ const formattedToDate = toDate
 const BASE_URL = 'https://people.zoho.com/hrportal1524046581683/AttendanceAction.zp';
 
 // Create an API slice
-export const leaveRequestApi = createApi({
-  reducerPath: 'leaveRequestApi',
+export const leaveRequestService = createApi({
+  reducerPath: 'leaveRequestService',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
@@ -173,4 +173,4 @@ export const leaveRequestApi = createApi({
 export const {
   getLeaveRequestsList,
   addLeaveRequest,
-} = leaveRequestApi;
+} = leaveRequestService;

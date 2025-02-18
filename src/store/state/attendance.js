@@ -15,7 +15,7 @@ import {
 import {
   ca
 } from 'date-fns/locale';
-import { attendanceRequestApi } from '../api/attendanceRequest';
+import { attendanceRequestApi } from '../api/attendanceRequestService';
 
 const morningStart = parse('07:30', 'HH:mm', new Date());
 const morningEnd = parse('12:00', 'HH:mm', new Date());

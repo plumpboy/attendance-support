@@ -1,7 +1,39 @@
 /* eslint-disable no-console */
 import axios from 'axios';
+import Transformer from '@utils/transformer';
 
-function requestZoho() {
+// Create an axios instance
+export const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Accept': '*/*',
+    'CSRF_TOKEN': conreqcsr,
+  },
+});
+
+export const baseQuery = async ({ url, method, body }) => {
+  try {
+    const response = await axiosInstance({
+      url,
+      method,
+      data: body,
+    });
+    return {
+      data: Transformer.transform(response.data),
+    };
+  } catch (axiosError) {
+    let err = axiosError;
+    return {
+      error: {
+        status: err.response?.status,
+        data: err.response?.data || err.message,
+      },
+    };
+  }
+};
+
+export function requestZoho() {
   const BASE_URL =
     window.location.origin + '/' + window.location.pathname.split('/')[1];
   axios.defaults.baseURL = BASE_URL;
@@ -16,5 +48,3 @@ function requestZoho() {
 
   return axios;
 }
-
-export default requestZoho();

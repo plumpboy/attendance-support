@@ -41,8 +41,8 @@ const formattedToDate = toDate
 const BASE_URL = 'https://people.zoho.com/hrportal1524046581683/AttendanceAction.zp';
 
 // Create an API slice
-export const fixTimeRequestApi = createApi({
-  reducerPath: 'fixTimeRequestApi',
+export const fixTimeRequestService = createApi({
+  reducerPath: 'fixTimeRequestService',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
@@ -113,4 +113,4 @@ export const fixTimeRequestApi = createApi({
 export const {
   getFixTimeRequestsList,
   addFixTimeRequest,
-} = fixTimeRequestApi;
+} = fixTimeRequestService;
