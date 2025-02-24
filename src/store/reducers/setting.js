@@ -2,23 +2,22 @@ import {
   createSlice
 } from '@reduxjs/toolkit';
 
-const today = new Date();
+const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }));
 const currentMonth = today.getMonth();
 const currentYear = today.getFullYear();
 
 const initialState = {
   // Define your initial state here
-  baseURL: 'https://people.zoho.com',
-  version: 'hrportal1524046581683',
+  baseURL: 'https://people.zoho.com/hrportal1524046581683',
   empid: '',
   userId: '',
-  currentMonthStartDate: (new Date(currentYear, currentMonth - 1, 21)).toLocaleDateString('en-GB', {
+  formattedFromDate: (new Date(currentYear, currentMonth - 1, 21)).toLocaleDateString('en-GB', {
       day: '2-digit',
       month: 'short',
       year: 'numeric',
     })
     .replace(/ /g, '-'),
-  currentMonthEndDate: (new Date(currentYear, currentMonth, 20)).toLocaleDateString('en-GB', {
+  formattedToDate: (new Date(currentYear, currentMonth, 20)).toLocaleDateString('en-GB', {
       day: '2-digit',
       month: 'short',
       year: 'numeric',

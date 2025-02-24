@@ -60,7 +60,7 @@ export const leaveRequestService = createApi({
     // typeofleave: -1
     // employee: ["412762000145976089"]
     // conreqcsr: 9d69f7f627c1d81aa499ba74a070958e62448b02fe6948a602279f56d8721c6dcf9f40cf2ee2bf5cd98a43fa350550901bceb8df98a9e3e890c0b5f316a74c5c
-    // status: 1
+    // status: 1 // approved -1//pending 2//cancelled 20//all 0//rejected
     // sortType: 1
     // sortBy: 3
     // sIndx: 1
