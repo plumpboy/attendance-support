@@ -46,7 +46,7 @@ const AboutPage = () => (
         </ul>
         <h4>How to use</h4>
         <ol>
-          <li>Log in to SRA and open the extension on the SRA page</li>
+          <li>Log in to SRA once, then open SRA++ from any tab</li>
           <li>Pick the month, then the types of work and hours per project</li>
           <li>Click "Preview work logs", check the list, then "Log"</li>
         </ol>

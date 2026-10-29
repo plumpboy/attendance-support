@@ -1,17 +1,24 @@
 import {
-  printLine
-} from './modules/print';
+  authFromLocalStorage,
+  saveSraAuth,
+  clearSraAuth,
+} from '../../utils/sraAuth';
 
-console.log('Content script works!');
-console.log('Must reload extension for modifications to take effect.');
+// Keep SRA++'s cached SRA login in sync with this page, so the popup works from any tab
+let lastToken;
 
-printLine("Using the 'printLine' function from the Print Module");
-// content.js
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//   if (request.method === "getLocalStorage") {
-//     console.log('content', request, localStorage.getItem(request.key));
-//     sendResponse({
-//       data: localStorage.getItem(request.key)
-//     });
-//   }
-// });
+const syncSraAuth = () => {
+  const auth = authFromLocalStorage(Object.entries(localStorage));
+  if (auth?.accessToken === lastToken) return;
+  lastToken = auth?.accessToken;
+  if (auth) {
+    saveSraAuth(auth);
+  } else {
+    // Logged out of SRA
+    clearSraAuth();
+  }
+};
+
+syncSraAuth();
+// SRA is a single page app: logging in or out doesn't reload the page
+setInterval(syncSraAuth, 3000);

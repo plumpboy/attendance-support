@@ -17,6 +17,7 @@ import {
   sumHours,
   projectLabel,
 } from './workLogPlan';
+import { SRA_URL, isUnauthorized } from '../../utils/sraAuth';
 
 // Last used split per project code, so the next month starts from it
 const SPLITS_KEY = 'sraWorkSplits';
@@ -43,10 +44,7 @@ const selectStyles = {
   menuPortal: (styles) => ({ ...styles, zIndex: 10 }),
 };
 
-const errorText = (e) =>
-  e.response?.status === 401
-    ? 'SRA session expired, please log in to SRA again'
-    : e.response?.data?.message || e.message;
+const errorText = (e) => e.response?.data?.message || e.message;
 
 const LogWorkPlanner = ({
   accessToken,
@@ -55,6 +53,7 @@ const LogWorkPlanner = ({
   workOption,
   isLoadingWorkType,
   onError,
+  onSessionExpired,
   onSuccess,
 }) => {
   // null while the month's timesheet is loading
@@ -133,9 +132,20 @@ const LogWorkPlanner = ({
       loadProjectNames(summary);
     } catch (e) {
       setPendingDays([]);
+      if (isUnauthorized(e)) {
+        onSessionExpired();
+        return;
+      }
       onError(`Failed to load timesheet: ${errorText(e)}`);
     }
-  }, [accessToken, userData, month, onError, loadProjectNames]);
+  }, [
+    accessToken,
+    userData,
+    month,
+    onError,
+    onSessionExpired,
+    loadProjectNames,
+  ]);
 
   useEffect(() => {
     loadTimesheet();
@@ -213,6 +223,10 @@ const LogWorkPlanner = ({
       saveSplits(splits);
       setPreview(withIds);
     } catch (e) {
+      if (isUnauthorized(e)) {
+        onSessionExpired();
+        return;
+      }
       onError(`Failed to load projects: ${errorText(e)}`);
     } finally {
       setProgress('');
@@ -257,10 +271,16 @@ const LogWorkPlanner = ({
         });
       } catch (e) {
         setProgress('');
+        const saved = `${i} of ${preview.length} work logs were saved.`;
+        if (isUnauthorized(e)) {
+          onSessionExpired();
+          onError(`SRA session expired, please log in to SRA again. ${saved}`);
+          return;
+        }
         onError(
           `Failed on ${entry.date} ${label(entry.code)} (${typeLabel(
             entry.typeOfWork
-          )}): ${errorText(e)}. ${i} of ${preview.length} work logs were saved.`
+          )}): ${errorText(e)}. ${saved}`
         );
         loadTimesheet();
         return;
@@ -268,9 +288,9 @@ const LogWorkPlanner = ({
     }
     setProgress('');
     onSuccess(`Logged ${preview.length} work logs (${sumHours(preview)}h)!`);
-    // Show the new logs on the SRA page
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) =>
-      chrome.tabs.reload(tabs[0].id)
+    // Show the new logs on the open SRA pages
+    chrome.tabs.query({ url: `${SRA_URL}*` }, (tabs) =>
+      tabs.forEach((tab) => chrome.tabs.reload(tab.id))
     );
     loadTimesheet();
   };
