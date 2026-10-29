@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "ZAS",
+  "name": "SRA++",
   "description": "A chrome extension to log work on SRA",
   "options_page": "options.html",
   "background": {
@@ -16,21 +16,22 @@
   "content_scripts": [
     {
       "matches": [
-        "*://people.zoho.com/*"
+        "https://sra.smartosc.com/*"
       ],
       "js": [
         "contentScript.bundle.js"
-      ],
-      "css": [
-        "content.styles.css"
       ]
     }
   ],
   "permissions": [
     "tabs",
-    "scripting"
+    "scripting",
+    "activeTab",
+    "storage",
+    "cookies"
   ],
   "host_permissions": [
+    "*://*.smartosc.com/*",
     "*://*.zoho.com/*"
   ],
   "devtools_page": "devtools.html",

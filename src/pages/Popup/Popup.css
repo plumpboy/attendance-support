@@ -4,10 +4,10 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  text-align: center;
-  height: 100%;
-  padding: 10px;
-  background-color: #282c34;
+  overflow-y: auto;
+  padding: 32px 20px;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
 }
 
 .logo {
@@ -17,13 +17,16 @@
 .title {
   display: flex;
   flex-wrap: nowrap;
-  text-align: center;
+  justify-content: center;
+  gap: 8px;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .text-title {
-  font-size: 17px;
-  font-weight: bold;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #495057;
 }
 
 .select-option {
@@ -32,46 +35,90 @@
 }
 
 .react-select-container {
-  font-size: 12px;
+  font-size: 13px;
 }
 .container {
-  width: 90%;
+  width: 100%;
 }
 .error-message {
-  color: red;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+.suceess-message {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
 
 button {
   cursor: pointer;
 }
 
+/* A centered card, matching the ZWT tab */
 .App-header {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   font-size: 14px;
-  color: white;
+  color: #495057;
+  text-align: center;
+}
+.date-input,
+.option-input {
+  text-align: left;
+  font-weight: 600;
 }
 .date-picker {
-  margin-top: 7px;
-  margin-bottom: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+.date-picker input {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 .select-option {
-  margin-top: 7px;
-
+  margin-top: 6px;
+  font-weight: normal;
 }
 .App-link {
   color: #61dafb;
 }
 
-.go-to-sra {
-  margin-top: 20px;
+.go-to-sra p {
+  margin: 12px 0 0;
+  color: #6c757d;
 }
 
-.log-button{
-  margin-top: 1rem;
-  height: 30px;
+.log-button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+.log-button:hover {
+  background-color: #45a049;
 }
 @keyframes App-logo-spin {
   from {
@@ -80,4 +127,230 @@ button {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Log work planner */
+.App-header.wide {
+  max-width: 640px;
+}
+
+.planner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.planner-note,
+.planner-summary {
+  margin: 4px 0 0;
+  color: #6c757d;
+  font-size: 13px;
+  text-align: left;
+}
+
+.project-card {
+  padding: 12px 14px;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid #4caf50;
+  border-radius: 6px;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.project-header span {
+  color: #6c757d;
+  font-size: 13px;
+}
+
+.split-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.split-type {
+  flex: 1;
+  font-size: 13px;
+}
+
+.split-hours {
+  width: 64px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: right;
+}
+
+.split-unit {
+  color: #6c757d;
+}
+
+.icon-button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #adb5bd;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.icon-button:hover {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.link-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #4caf50;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
+.split-hint.ok {
+  color: #4caf50;
+}
+
+.split-hint.warn {
+  color: #b7791f;
+}
+
+.planner-preview {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.planner-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.planner-preview th {
+  position: sticky;
+  top: 0;
+  padding: 8px 10px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.planner-preview td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.planner-preview .hours {
+  text-align: right;
+}
+
+.planner-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.planner-actions .log-button {
+  flex: 1;
+  margin-top: 0;
+}
+
+.secondary-button {
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.secondary-button:hover {
+  background-color: #f8f9fa;
+}
+
+.log-button:disabled,
+.secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.planner-preview td {
+  vertical-align: middle;
+}
+
+.preview-type {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 13px;
+}
+
+.preview-hours {
+  width: 56px;
+  margin-right: 3px;
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: right;
+}
+
+.preview-empty {
+  padding: 16px 10px;
+  color: #6c757d;
+  text-align: center;
+}
+
+/* Keep the hours input and its "h" unit on one line */
+.planner-preview .hours {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Same height for every control in a preview row, input and unit centered together */
+.preview-type,
+.preview-hours {
+  height: 28px;
+  box-sizing: border-box;
+}
+
+.preview-hours-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  vertical-align: middle;
+}
+
+.preview-hours-cell .preview-hours {
+  margin-right: 0;
+}
+
+.planner-preview .icon-button {
+  vertical-align: middle;
 }

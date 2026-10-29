@@ -47,7 +47,7 @@ var options = {
     options: path.join(__dirname, 'src', 'pages', 'Options', 'index.jsx'),
     popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.jsx'),
     background: path.join(__dirname, 'src', 'pages', 'Background', 'index.js'),
-    contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.jsx'),
+    contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
     devtools: path.join(__dirname, 'src', 'pages', 'Devtools', 'index.js'),
     panel: path.join(__dirname, 'src', 'pages', 'Panel', 'index.jsx'),
   },
@@ -187,6 +187,16 @@ var options = {
         {
           from: 'src/assets/img/icon-34.png',
           to: path.join(__dirname, 'build'),
+          force: true,
+        },
+      ],
+    }),
+    // ZWT (Working Time Calculator) is plain HTML/JS, copied as-is and shown in a popup tab
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/zwt',
+          to: path.join(__dirname, 'build', 'zwt'),
           force: true,
         },
       ],

@@ -1,0 +1,288 @@
+/* One fixed size for every tab (Chrome caps popups at 800x600), so switching tabs never resizes the popup.
+   760px is ZWT's own page width. */
+body {
+  width: 760px;
+  height: 600px;
+  background-color: #fff;
+}
+
+#app-container {
+  height: 100%;
+}
+
+.popup-tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Same look as ZWT's own tab bar, which is hidden when embedded */
+.popup-tabs-nav {
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
+  border-bottom: 2px solid #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+.popup-tabs-button {
+  flex: 1;
+  margin-bottom: -2px;
+  padding: 14px 20px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background-color: transparent;
+  color: #666;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-tabs-button:hover {
+  background-color: #e9ecef;
+  color: #333;
+}
+
+.popup-tabs-button.active {
+  color: #4caf50;
+  border-bottom-color: #4caf50;
+  background-color: #fff;
+}
+
+.popup-about-button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 12px 8px 4px;
+  padding: 0 12px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  background-color: #fff;
+  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.popup-about-button:hover {
+  border-color: #adb5bd;
+  color: #333;
+}
+
+.popup-about-button.active {
+  border-color: #4caf50;
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.popup-about-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.popup-tabs-button:focus-visible,
+.popup-about-button:focus-visible {
+  outline: 2px solid #4caf50;
+  outline-offset: -2px;
+}
+
+/* Popup's .App is absolutely positioned, so the content area is its containing block */
+.popup-tabs-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.zwt-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Donate reminder, same look as ZWT's */
+.donate-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.donate-content {
+  max-width: 360px;
+  padding: 16px 16px 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.donate-content h3 {
+  margin: 0 0 12px;
+  color: #495057;
+  font-size: 20px;
+}
+
+.donate-content p {
+  margin: 0 0 16px;
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.donate-qr {
+  width: 180px;
+  height: 180px;
+  padding: 8px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.donate-close {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.donate-close:hover {
+  background-color: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+/* About page, over the active tab */
+.about-page {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  overflow-y: auto;
+  padding: 20px 24px;
+  background-color: #fff;
+  color: #495057;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.about-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e0e0e0;
+  text-align: center;
+}
+
+.about-logo {
+  width: 48px;
+  height: 48px;
+}
+
+.about-header h2 {
+  margin: 6px 0 2px;
+  color: #4caf50;
+  font-size: 24px;
+}
+
+.about-subtitle {
+  margin: 0;
+  font-weight: 600;
+}
+
+.about-version {
+  margin: 2px 0 0;
+  color: #6c757d;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.about-section {
+  margin-bottom: 22px;
+}
+
+.about-section h3 {
+  margin: 0 0 10px;
+  padding-left: 10px;
+  border-left: 4px solid #4caf50;
+  font-size: 17px;
+}
+
+.about-section h4 {
+  margin: 12px 0 4px;
+  font-size: 14px;
+}
+
+.about-section p,
+.about-section li {
+  margin: 0 0 6px;
+  color: #6c757d;
+}
+
+.about-section ul,
+.about-section ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.about-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.about-donate,
+.about-config {
+  padding: 14px 16px;
+  border-left: 4px solid #4caf50;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.about-donate {
+  text-align: center;
+}
+
+.about-donate .donate-qr {
+  width: 140px;
+  height: 140px;
+  background-color: #fff;
+}
+
+.about-config div {
+  margin-bottom: 4px;
+  color: #6c757d;
+}
+
+.about-config strong {
+  color: #495057;
+}
+
+.about-footer {
+  margin: 8px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+  color: #6c757d;
+  font-style: italic;
+  text-align: center;
+}

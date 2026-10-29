@@ -1,6 +1,6 @@
 {
   "name": "sra-plus",
-  "version": "5.0.6",
+  "version": "8.0.0",
   "description": "A chrome extension to log work on SRA",
   "license": "MIT",
   "repository": {
@@ -10,6 +10,7 @@
   "scripts": {
     "build": "node utils/build.js",
     "start": "node utils/webserver.js",
+    "sync:zwt": "rm -rf src/zwt && mkdir -p src/zwt && cp -r ${ZWT_PATH:-../ZWT}/index.html ${ZWT_PATH:-../ZWT}/js ${ZWT_PATH:-../ZWT}/icon.png ${ZWT_PATH:-../ZWT}/qr.png src/zwt/",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
