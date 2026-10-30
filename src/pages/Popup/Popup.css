@@ -5,6 +5,8 @@
   left: 0px;
   right: 0px;
   overflow-y: auto;
+  /* Keep room for the scrollbar so content doesn't jump sideways when it appears */
+  scrollbar-gutter: stable;
   padding: 32px 20px;
   box-sizing: border-box;
   background-color: #f8f9fa;

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SRA++",
-  "description": "A chrome extension to log work on SRA",
+  "description": "Log a month of SRA work in one go and track your Zoho People working hours, attendance and leave requests.",
   "options_page": "options.html",
   "background": {
     "service_worker": "background.bundle.js"

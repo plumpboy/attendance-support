@@ -5,19 +5,11 @@ import AboutPage from './AboutPage';
 import './PopupTabs.css';
 
 const TABS = [
+  { id: 'zwt', label: 'Zoho Working Time' },
   { id: 'sra', label: 'SRA++' },
-  { id: 'zwt', label: 'Zoho working time' },
 ];
 
 const ACTIVE_TAB_KEY = 'popupActiveTab';
-
-// ZWT is built as a standalone popup page: flatten its card and hide its own Home/About tabs,
-// this popup's tab bar and About page replace them
-const ZWT_EMBED_CSS = `
-  html, body { width: 100%; background-color: #fff; }
-  .tab-container { border-radius: 0; box-shadow: none; }
-  .tab-nav { display: none; }
-`;
 
 const getInitialTab = () => {
   try {
@@ -30,14 +22,6 @@ const getInitialTab = () => {
 const PopupTabs = () => {
   const [activeTab, setActiveTab] = useState(getInitialTab);
   const [showAbout, setShowAbout] = useState(false);
-  const onZwtLoad = (event) => {
-    const doc = event.target.contentDocument;
-    if (!doc) return;
-    const style = doc.createElement('style');
-    style.textContent = ZWT_EMBED_CSS;
-    doc.head.appendChild(style);
-  };
-
   const selectTab = (tabId) => {
     setActiveTab(tabId);
     setShowAbout(false);
@@ -88,12 +72,12 @@ const PopupTabs = () => {
             <DonateModal />
           </>
         )}
+        {/* ZWT hides its own Home/About tabs when embedded (js/embed.js), this tab bar and About page replace them */}
         {activeTab === 'zwt' && (
           <iframe
             className="zwt-frame"
             src="zwt/index.html"
-            title="Zoho working time"
-            onLoad={onZwtLoad}
+            title="Zoho Working Time"
           />
         )}
         {/* Over the tab instead of replacing it, so closing About doesn't reload the tab */}

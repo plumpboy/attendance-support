@@ -17,7 +17,7 @@ const AboutPage = () => (
       <img src={logo} alt="" className="about-logo" />
       <h2>{name}</h2>
       <p className="about-subtitle">
-        SRA++ &amp; Zoho working time in one extension
+        SRA++ &amp; Zoho Working Time in one extension
       </p>
       <p className="about-version">Version {version}</p>
     </div>
@@ -53,7 +53,7 @@ const AboutPage = () => (
       </section>
 
       <section className="about-section">
-        <h3>Zoho working time</h3>
+        <h3>Zoho Working Time</h3>
         <p>Working time and attendance from Zoho People.</p>
         <ul>
           <li>Today's work duration and recommended check-out time</li>
@@ -66,7 +66,7 @@ const AboutPage = () => (
         <h4>How to use</h4>
         <ol>
           <li>Log in to Zoho People</li>
-          <li>Open the extension, "Zoho working time" tab</li>
+          <li>Open the extension, "Zoho Working Time" tab</li>
           <li>Use "Auto log" or "Manual log" to settle days below 8h</li>
         </ol>
       </section>

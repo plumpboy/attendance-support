@@ -30,7 +30,8 @@ body {
   margin-bottom: -2px;
   padding: 14px 20px;
   border: none;
-  border-bottom: 3px solid transparent;
+  /* Same width as the active underline, so the tab bar keeps its height */
+  border-bottom: 4px solid transparent;
   background-color: transparent;
   color: #666;
   font-size: 15px;
@@ -45,9 +46,10 @@ body {
 }
 
 .popup-tabs-button.active {
-  color: #4caf50;
-  border-bottom-color: #4caf50;
-  background-color: #fff;
+  color: #2e7d32;
+  border-bottom-color: #2e7d32;
+  background-color: #e8f5e9;
+  font-weight: 700;
 }
 
 .popup-about-button {
